@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redes Sociales: Ventajas y Desventajas</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6c3fc5;
+      --primary-light: #9b6ee8;
+      --accent-green: #22c55e;
+      --accent-red: #ef4444;
+      --accent-blue: #3b82f6;
+      --bg: #0f0a1e;
+      --surface: #1a1133;
+      --surface2: #231848;
+      --text: #f0eaff;
+      --text-muted: #a090c8;
+      --card-border: rgba(108, 63, 197, 0.3);
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      padding: 60px 20px 80px;
+      text-align: center;
+      background: linear-gradient(135deg, #0f0a1e 0%, #1e0a3c 60%, #0f0a1e 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,63,197,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-icons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .hero-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .hero-icon:nth-child(1) { background: linear-gradient(135deg,#e1306c,#f77737); animation-delay:0s; }
+    .hero-icon:nth-child(2) { background: linear-gradient(135deg,#1877f2,#0066cc); animation-delay:0.3s; }
+    .hero-icon:nth-child(3) { background: linear-gradient(135deg,#000,#e1306c); animation-delay:0.6s; }
+    .hero-icon:nth-child(4) { background: linear-gradient(135deg,#0077b5,#004d80); animation-delay:0.9s; }
+    .hero-icon:nth-child(5) { background: linear-gradient(135deg,#ff0000,#990000); animation-delay:1.2s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(108,63,197,0.25);
+      border: 1px solid rgba(108,63,197,0.5);
+      color: var(--primary-light);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 30%, var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: clamp(14px, 2.5vw, 17px);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── Sections ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .section-label .num {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(108,63,197,0.6);
+    }
+
+    .section-label h2 {
+      font-size: clamp(17px, 3.5vw, 22px);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* ── Objetivo cards ── */
+    .objetivo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 520px) {
+      .objetivo-grid { grid-template-columns: 1fr; }
+    }
+
+    .objetivo-card {
+      background: var(--surface2);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .objetivo-card .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .objetivo-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* ── Plataformas ── */
+    .plataformas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .plataforma {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── Pros / Cons ── */
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .pros-cons { grid-template-columns: 1fr; }
+    }
+
+    .pros-box, .cons-box {
+      border-radius: 16px;
+      padding: 22px;
+      border: 1px solid;
+    }
+
+    .pros-box {
+      background: rgba(34,197,94,0.06);
+      border-color: rgba(34,197,94,0.25);
+    }
+
+    .cons-box {
+      background: rgba(239,68,68,0.06);
+      border-color: rgba(239,68,68,0.25);
+    }
+
+    .box-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .box-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+
+    .pros-box .box-icon { background: rgba(34,197,94,0.15); }
+    .cons-box .box-icon { background: rgba(239,68,68,0.15); }
+
+    .box-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .pros-box .box-header h3 { color: var(--accent-green); }
+    .cons-box .box-header h3 { color: var(--accent-red); }
+
+    .item-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .item-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .item-list li .icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Análisis ── */
+    .analisis-card {
+      background: linear-gradient(135deg, rgba(108,63,197,0.12), rgba(59,130,246,0.08));
+      border: 1px solid rgba(108,63,197,0.3);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .analisis-card p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .analisis-card blockquote {
+      border-left: 3px solid var(--primary-light);
+      padding-left: 16px;
+      margin-top: 16px;
+      color: var(--text);
+      font-style: italic;
+      font-size: 15px;
+    }
+
+    /* ── Stats ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .stats { grid-template-columns: 1fr; }
+    }
+
+    .stat {
+      background: var(--surface2);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat .value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-light);
+      display: block;
+    }
+
+    .stat .label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── Método ── */
+    .metodo-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .metodo-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .metodo-step .step-num {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .metodo-step .step-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .metodo-step .step-text strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ── Recomendaciones List ── */
+    .recom-list li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    
+    .recom-list li span {
+      color: #eab308;
+      font-weight: bold;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(108,63,197,0.2);
+    }
+
+    footer span {
+      color: var(--primary-light);
+      font-weight: 600;
+    }
+
+    /* ── divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(108,63,197,0.4), transparent);
+      margin: 0 0 48px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-icons">
+      <div class="hero-icon">📸</div>
+      <div class="hero-icon">👍</div>
+      <div class="hero-icon">🎵</div>
+      <div class="hero-icon">💼</div>
+      <div class="hero-icon">▶️</div>
+    </div>
+    <div class="badge">Proyecto de Investigación Digital · Actividad 3.4</div>
+    <h1>Redes Sociales:<br>Ventajas y Desventajas</h1>
+    <p>Un análisis completo sobre el impacto de las plataformas digitales en la vida de los jóvenes y la sociedad actual.</p>
+  </div>
+
+  <div class="container">
+
+    <div class="stats" style="margin-top:32px; margin-bottom:48px;">
+      <div class="stat">
+        <span class="value">5.4B</span>
+        <div class="label">Usuarios activos en el mundo</div>
+      </div>
+      <div class="stat">
+        <span class="value">2.5 h</span>
+        <div class="label">Tiempo promedio diario en redes</div>
+      </div>
+      <div class="stat">
+        <span class="value">90%</span>
+        <div class="label">Jóvenes de 18–29 años las usan</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section>
+      <div class="section-label">
+        <div class="num">1</div>
+        <h2>Elección del Tema</h2>
+      </div>
+      <div class="card">
+        <p>
+          Las redes sociales son parte fundamental de la vida cotidiana de millones de personas.
+          Su uso masivo entre jóvenes las convierte en un tema <strong style="color:#fff">social, actual y de gran relevancia</strong>,
+          con impactos tanto positivos como negativos que vale la pena analizar.
+        </p>
+      </div>
+
+      <div style="margin-top:16px; margin-bottom:12px; font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted);">Objetivos</div>
+      <div class="objetivo-grid">
+        <div class="objetivo-card">
+          <div class="dot" style="background:#a78bfa;"></div>
+          <p><strong style="color:#fff; display:block; margin-bottom:4px;">Objetivo General</strong>
+            Analizar las ventajas y desventajas del uso de las redes sociales.</p>
+        </div>
+        <div class="objetivo-card">
+          <div class="dot"></div>
+          <p>Identificar los <strong style="color:#fff">beneficios</strong> que ofrecen las redes sociales en la comunicación y el aprendizaje.</p>
+        </div>
+        <div class="objetivo-card">
+          <div class="dot"></div>
+          <p>Reconocer los <strong style="color:#fff">efectos negativos</strong> que pueden causar en la salud mental y el rendimiento.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">
+        <div class="num">2</div>
+        <h2>Método de Investigación Digital</h2>
+      </div>
+      <div class="metodo-steps">
+        <div class="metodo-step">
+          <div class="step-num">A</div>
+          <div class="step-text">
+            <strong>Técnica utilizada</strong>
+            Búsqueda de información en internet y análisis de contenido en páginas web confiables.
+          </div>
+        </div>
+        <div class="metodo-step">
+          <div class="step-num">B</div>
+          <div class="step-text">
+            <strong>Justificación</strong>
+            Este método permite obtener información actualizada y conocer diferentes opiniones y perspectivas sobre el uso de las redes sociales en el contexto actual.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">
+        <div class="num">3</div>
+        <h2>Desarrollo de la Investigación</h2>
+      </div>
+      <div class="card" style="margin-bottom:20px;">
+        <p>
+          Las <strong style="color:#fff">redes sociales</strong> son plataformas digitales que permiten la comunicación, 
+          interacción y compartición de contenido entre personas de todo el mundo. 
+          Surgieron a principios del siglo XXI y hoy son una parte integral de la vida moderna.
+        </p>
+        <div class="plataformas">
+          <div class="plataforma">📸 Instagram</div>
+          <div class="plataforma">👍 Facebook</div>
+          <div class="plataforma">🎵 TikTok</div>
+          <div class="plataforma">▶️ YouTube</div>
+          <div class="plataforma">🐦 Twitter/X</div>
+          <div class="plataforma">💼 LinkedIn</div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros-box">
+          <div class="box-header">
+            <div class="box-icon">✅</div>
+            <h3>Ventajas</h3>
+          </div>
+          <ul class="item-list">
+            <li>
+              <span class="icon">💬</span>
+              Permiten la <strong style="color:#fff">comunicación rápida</strong> con amigos, familiares y personas de todo el mundo.
+            </li>
+            <li>
+              <span class="icon">📤</span>
+              Facilitan <strong style="color:#fff">compartir información</strong>, fotos, videos y experiencias en tiempo real.
+            </li>
+            <li>
+              <span class="icon">📚</span>
+              Ayudan en el <strong style="color:#fff">aprendizaje</strong> y el acceso a información educativa y cultural.
+            </li>
+            <li>
+              <span class="icon">🎮</span>
+              Sirven como fuente de <strong style="color:#fff">entretenimiento</strong> y expresión creativa.
+            </li>
+            <li>
+              <span class="icon">🤝</span>
+              Fomentan la <strong style="color:#fff">conexión comunitaria</strong> y la participación social.
+            </li>
+          </ul>
+        </div>
+
+        <div class="cons-box">
+          <div class="box-header">
+            <div class="box-icon">⚠️</div>
+            <h3>Desventajas</h3>
+          </div>
+          <ul class="item-list">
+            <li>
+              <span class="icon">📵</span>
+              Pueden causar <strong style="color:#fff">adicción</strong> y uso compulsivo que afecta la rutina diaria.
+            </li>
+            <li>
+              <span class="icon">🧠</span>
+              Afectan la <strong style="color:#fff">salud mental</strong>: ansiedad, baja autoestima, comparación social.
+            </li>
+            <li>
+              <span class="icon">😡</span>
+              Existe riesgo de <strong style="color:#fff">ciberbullying</strong> y acoso en línea, especialmente en jóvenes.
+            </li>
+            <li>
+              <span class="icon">📖</span>
+              Pueden <strong style="color:#fff">distraer</strong> de actividades importantes como el estudio y el trabajo.
+            </li>
+            <li>
+              <span class="icon">🔒</span>
+              Riesgo de vulneración de la <strong style="color:#fff">privacidad</strong> y exposición de datos personales.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">
+        <div class="num">4</div>
+        <h2>Análisis de la Información</h2>
+      </div>
+      <div class="analisis-card">
+        <p>
+          Las redes sociales representan una de las transformaciones más significativas en la comunicación humana moderna.
+          Su impacto es profundamente <strong style="color:#fff">dual</strong>: mientras abren puertas al conocimiento, 
+          la creatividad y la conexión global, también presentan riesgos reales para el bienestar emocional y cognitivo.
+        </p>
+        <blockquote>
+          "El uso consciente y equilibrado de las redes sociales es clave. No son el problema en sí mismas, 
+          sino la forma en que las usamos."
+        </blockquote>
+        <p style="margin-top:16px;">
+          El <strong style="color:#fff">uso excesivo</strong> se asocia directamente con problemas de ansiedad, 
+          disminución en el rendimiento académico y dificultad para concentrarse. 
+          Sin embargo, cuando se usan con propósito, pueden convertirse en poderosas herramientas de aprendizaje y colaboración.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">
+        <div class="num">5</div>
+        <h2>Conclusiones</h2>
+      </div>
+      <div class="card">
+        <p style="margin-bottom: 16px;">
+          La dependencia a las redes sociales es un fenómeno real y creciente que afecta principalmente a la población joven. Nuestra investigación confirma que no se trata simplemente de "pasar mucho tiempo en línea", sino de un patrón de comportamiento que puede tener consecuencias significativas en la salud mental, el rendimiento académico y las relaciones interpersonales presenciales.
+        </p>
+        <p style="margin-bottom: 24px;">
+          Sin embargo, es importante destacar que las redes sociales no son inherentemente negativas. Cuando se utilizan con moderación, pueden fomentar la comunicación, el aprendizaje continuo y la creatividad. El problema surge cuando el uso se vuelve compulsivo y desplaza otras actividades esenciales.
+        </p>
+
+        <div style="background: rgba(108,63,197,0.1); border: 1px solid rgba(108,63,197,0.3); border-radius: 12px; padding: 18px;">
+          <h3 style="color: #fff; font-size: 16px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+            💡 RECOMENDACIONES
+          </h3>
+          <ul class="recom-list" style="list-style: none;">
+            <li><span>✓</span> Promover la educación digital y la autoconciencia sobre el tiempo de pantalla.</li>
+            <li><span>✓</span> Implementar herramientas de bienestar digital y establecer límites de uso.</li>
+            <li><span>✓</span> Fomentar actividades alternativas offline que generen interacciones reales.</li>
+            <li><span>✓</span> Limitar las notificaciones para reducir los estímulos constantes y la necesidad de revisión.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">
+        <div class="num">6</div>
+        <h2>Equipo de Investigación</h2>
+      </div>
+      <div class="card" style="text-align: center; padding: 32px 20px;">
+        <div style="display: inline-block; background: var(--primary); color: #fff; padding: 6px 18px; border-radius: 20px; font-weight: 700; font-size: 14px; margin-bottom: 20px; letter-spacing: 1px;">
+          GRUPO BMTV-2C
+        </div>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+          <li style="font-size: 16px; color: var(--text); font-weight: 500;">Delgado Adame Victor Daniel</li>
+          <li style="font-size: 16px; color: var(--text); font-weight: 500;">Fuentes Jiménez Gabriel</li>
+          <li style="font-size: 16px; color: var(--text); font-weight: 500;">Miranda Jaco Aaron Efrén</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  
+
+
+</body>
+</html>
